@@ -29,11 +29,14 @@ async function publishMessage(topicNameOrId, data) {
   }
 }
 io.on('connection', (socket) => {
+  console.log('user connected: ' + socket.id);
   socket.on('chat message', (msg) => {
+    console.log('user: ' + socket.id + ' sent a chat message');
     publishMessage(topicNameOrId, msg);
   });
   emitter.on('chat message', (res) => {
     socket.emit('chat message', res.data.toString());
+    console.log('user: ' + socket.id + ' received a chat message');
   });
 });
 
