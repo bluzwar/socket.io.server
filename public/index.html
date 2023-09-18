@@ -29,9 +29,14 @@
             });
 
             socket.on('chat message', (msg) => {
-                const item = document.createElement('li');
-                item.textContent = msg;
-                messages.appendChild(item);
+                const messageEntry = document.createElement('li');
+                const metadata = document.createElement('p')
+                metadata.textContent = socket.id + " " + new Date().toLocaleString()
+                const message = document.createElement('p')
+                message.textContent = msg;
+                messageEntry.appendChild(metadata)
+                messageEntry.appendChild(message);
+                messages.appendChild(messageEntry);
                 window.scrollTo(0, document.body.scrollHeight);
             });
         </script>
