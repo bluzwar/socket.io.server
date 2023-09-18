@@ -27,7 +27,7 @@ pubsub.subscription.on('message', message => {
   message.ack();
 });
 
-server.listen(3000, () => {
-  console.log('server running at http://localhost:3000');
+server.listen(8080, () => {
+  console.log('server running at http://localhost:8080');
 });
 
