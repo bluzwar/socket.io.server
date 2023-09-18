@@ -13,9 +13,10 @@ async function publishMessage(data) {
         .topic(topicNameOrId)
         .publishMessage({data: dataBuffer});
       console.log(`Message ${messageId} published.`);
+      return true;
     } catch (error) {
-        console.error(`Received error while publishing: ${error.message}`);
-        process.exitCode = 1;
+        console.error(`Received error while publishing: ${error.message}`);  
+        return false;
     }
   }
 

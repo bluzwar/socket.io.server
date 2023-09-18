@@ -8,7 +8,13 @@ io.on('connection', (socket) => {
   console.log('user connected: ' + socket.id);
   socket.on('chat message', (msg) => {
     console.log('user: ' + socket.id + ' sent a chat message');
-    pubsub.publishMessage(msg);
+    const messageSent = pubsub.publishMessage(msg);
+    if (messageSent) {
+      console.log('message sent to pubsub');
+    }
+    else {
+      console.log('Error: message not sent to pubsub');
+    }
   });
   emitter.on('chat message', (res) => {
     socket.emit('chat message', res.data.toString());
